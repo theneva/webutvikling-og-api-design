@@ -11,7 +11,49 @@
     <div id="container"></div>
 
     <script type="text/babel">
-      // Code goes here (for now)
+      class Greeting extends React.Component {
+        render() {
+          if (this.props.name === '') {
+            return <p>Hello!</p>;
+          }
+
+          return <p>Hello, {this.props.name}</p>;
+        }
+      }
+
+      class GreetingContainer extends React.Component {
+        constructor(props) {
+          super(props);
+
+          this.state = {
+            name: "Kake",
+          };
+        }
+
+        render() {
+          return (
+            <div>
+              <Greeting name={this.state.name} />
+              <input ref="nameInput" type="text" onChange={() =>
+                this.setState({
+                  name: this.refs.nameInput.value,
+                })
+              } />
+            </div>
+          );
+        }
+      }
+
+      ReactDOM.render(
+        <div>
+          <GreetingContainer />,
+          <GreetingContainer />,
+          <GreetingContainer />,
+          <GreetingContainer />,
+          <GreetingContainer />,
+        </div>,
+        document.getElementById('container')
+      );
     </script>
   </body>
 </html>
