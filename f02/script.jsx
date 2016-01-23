@@ -1,24 +1,22 @@
 class Messenger extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      activeThread: window.threads[0],
+    };
+  }
+
   render() {
     return (
         <div style={{
           margin: '1em',
         }}>
           <div style={{display: 'inline-block'}}>
-            <ThreadSummaryList threads={[
-              {name: 'Simen'},
-              {name: 'AC'},
-              {name: 'Martin'},
-              {name: 'Simen'},
-              {name: 'AC'},
-              {name: 'Martin'},
-              {name: 'Simen'},
-              {name: 'AC'},
-              {name: 'Martin'},
-              {name: 'Simen'},
-              {name: 'AC'},
-              {name: 'Martin'},
-            ]}/>
+            <ThreadSummaryList threads={this.props.threads}
+                onThreadSelected={index => this.setState({
+                    activeThread: window.threads[index],
+                })}/>
           </div>
 
           <div style={{
@@ -26,33 +24,8 @@ class Messenger extends React.Component {
             verticalAlign: 'top',
             marginLeft: '1em',
           }}>
-            <ActiveThread name="Øl biff PC"
-              messages={[
-                {text: 'ja'},
-                {text: 'han snakker ikke i tlf'},
-                {text: 'ring nå'},
-                {text: 'jeg ser han er ledig'},
-                {text: 'ja'},
-                {text: 'han snakker ikke i tlf'},
-                {text: 'ring nå'},
-                {text: 'jeg ser han er ledig'},
-                {text: 'ja'},
-                {text: 'han snakker ikke i tlf'},
-                {text: 'ring nå'},
-                {text: 'jeg ser han er ledig'},
-                {text: 'ja'},
-                {text: 'han snakker ikke i tlf'},
-                {text: 'ring nå'},
-                {text: 'jeg ser han er ledig'},
-                {text: 'ja'},
-                {text: 'han snakker ikke i tlf'},
-                {text: 'ring nå'},
-                {text: 'jeg ser han er ledig'},
-                {text: 'ja'},
-                {text: 'han snakker ikke i tlf'},
-                {text: 'ring nå'},
-                {text: 'jeg ser han er ledig'},
-              ]}/>
+            <ActiveThread name={this.state.activeThread.name}
+                messages={this.state.activeThread.messages}/>
           </div>
         </div>
     );
@@ -64,11 +37,12 @@ class ThreadSummaryList extends React.Component {
     return (
         <div>
           <div style={{marginBottom: '0.5em'}}>
-            <input type="text" className="form-control" placeholder="Search"/>
+            <input type="text" className="form-control" placeholder="Filter"/>
           </div>
           <div>
-            {this.props.threads.map(thread => (
-              <ThreadSummary key={Math.random()}
+            {this.props.threads.map((thread, index) => (
+              <ThreadSummary key={index}
+                onSelected={() => this.props.onThreadSelected(index)}
                 thread={thread}/>
             ))}
           </div>
@@ -80,11 +54,12 @@ class ThreadSummaryList extends React.Component {
 class ThreadSummary extends React.Component {
   render() {
     return (
-      <div style={{
-        border: '1px solid black'
-      }}>
-        {this.props.thread.name}
-      </div> 
+        <div onClick={this.props.onSelected}
+            style={{
+              border: '1px solid black',
+            }}>
+          {this.props.thread.name}
+        </div> 
     );
   }
 }
@@ -126,6 +101,6 @@ class Message extends React.Component {
 }
 
 ReactDOM.render(
-    <Messenger/>,
+    <Messenger threads={window.threads}/>,
     document.getElementById('container')
 );
