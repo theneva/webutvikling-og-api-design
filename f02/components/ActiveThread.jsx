@@ -19,3 +19,5 @@ class ActiveThread extends React.Component {
         );
     }
 }
+
+window.ActiveThread = ActiveThread;

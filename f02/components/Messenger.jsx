@@ -31,3 +31,5 @@ class Messenger extends React.Component {
         );
     }
 }
+
+window.Messenger = Messenger;

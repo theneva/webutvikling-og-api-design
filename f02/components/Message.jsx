@@ -11,3 +11,5 @@ class Message extends React.Component {
         );
     }
 }
+
+window.Message = Message;

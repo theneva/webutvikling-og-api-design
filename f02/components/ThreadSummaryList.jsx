@@ -16,3 +16,5 @@ class ThreadSummaryList extends React.Component {
         );
     }
 }
+
+window.ThreadSummaryList = ThreadSummaryList;
