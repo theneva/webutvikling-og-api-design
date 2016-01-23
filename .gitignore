@@ -4,3 +4,7 @@
 # VIM
 *.swo
 *.swp
+
+# IntelliJ
+.idea/
+*.iml
