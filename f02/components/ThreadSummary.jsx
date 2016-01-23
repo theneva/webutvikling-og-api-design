@@ -1,12 +1,12 @@
 class ThreadSummary extends React.Component {
-    render() {
-        return (
-            <div onClick={this.props.onSelected}
-                 style={{
+  render() {
+    return (
+        <div onClick={this.props.onSelected}
+             style={{
               border: '1px solid black',
             }}>
-                {this.props.thread.name}
-            </div>
-        );
-    }
+          {this.props.thread.name}
+        </div>
+    );
+  }
 }

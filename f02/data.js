@@ -1,56 +1,56 @@
 window.threads = [
   {
     name: 'Simen',
-    messages: [ {
+    messages: [{
       sent: new Date(),
       text: 'hei'
     },
-    {
-      sent: new Date(),
-      text: 'der'
-    },
-    {
-      sent: new Date(),
-      text: 'sup'
-    },
-    {
-      sent: new Date(),
-      text: 'øl'
-    },
-    {
-      sent: new Date(),
-      text: 'biff'
-    },
-    {
-      sent: new Date(),
-      text: 'pc'
-    }],
+      {
+        sent: new Date(),
+        text: 'der'
+      },
+      {
+        sent: new Date(),
+        text: 'sup'
+      },
+      {
+        sent: new Date(),
+        text: 'øl'
+      },
+      {
+        sent: new Date(),
+        text: 'biff'
+      },
+      {
+        sent: new Date(),
+        text: 'pc'
+      }],
   },
   {
     name: 'AC',
-    messages: [ {
+    messages: [{
       sent: new Date(),
       text: 'hei'
     },
-    {
-      sent: new Date(),
-      text: 'der'
-    },
-    {
-      sent: new Date(),
-      text: 'sup'
-    },
-    {
-      sent: new Date(),
-      text: 'øl'
-    },
-    {
-      sent: new Date(),
-      text: 'biff'
-    },
-    {
-      sent: new Date(),
-      text: 'pc'
-    }],
+      {
+        sent: new Date(),
+        text: 'der'
+      },
+      {
+        sent: new Date(),
+        text: 'sup'
+      },
+      {
+        sent: new Date(),
+        text: 'øl'
+      },
+      {
+        sent: new Date(),
+        text: 'biff'
+      },
+      {
+        sent: new Date(),
+        text: 'pc'
+      }],
   },
 ];
