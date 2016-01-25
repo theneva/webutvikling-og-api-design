@@ -1,10 +1,33 @@
-class EmailInput extends React.Component {
+class ValidatedEmailInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(e) {
+    const email = e.target.value;
+    this.validate(email);
+  }
+
+  validate(value) {
+    const errors = {};
+
+    if (!value.match(/.+@.+\..+/)) {
+      errors.wrongFormat = 'Email must be on form x@y.z';
+    }
+
+    this.props.onValidate(errors);
+  }
+
   render() {
     return (
-        <label>
-          Email
-          <input className="form-control"/>
-        </label>
+        <div className={`control-group ${this.props.hasError ? 'has-error' : ''}`}>
+          <label>
+            Email
+            <input className="form-control"
+                   onBlur={this.handleChange}/>
+          </label>
+        </div>
     );
   }
 }
@@ -35,11 +58,10 @@ class PasswordInput extends React.Component {
 class ValidatedPasswordInput extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       password: '',
       verification: '',
-      status: '',
-      errors: {},
     };
   }
 
@@ -54,37 +76,33 @@ class ValidatedPasswordInput extends React.Component {
       errors.verification = 'Verification does not match password';
     }
 
-    const success = Object.keys(errors).length === 0;
-
-    this.setState({
-      errors,
-      status: success ? 'has-success' : 'has-error',
-    });
+    this.props.onValidate(errors);
   }
 
   render() {
     return (
-        <div className={`control-group ${this.state.status}`}>
+        <div className={`control-group ${this.props.hasError ? 'has-error' : ''}`}>
           <PasswordInput label="Password"
                          onChange={password => {
-                           this.setState({
-                             password,
-                           });
-
+                           this.setState({password});
                            this.validate(password, this.state.verification);
                          }}/>
 
           <PasswordInput label="Verify password"
                          onChange={verification => {
-                           this.setState({
-                             verification,
-                           });
-
+                           this.setState({verification});
                            this.validate(this.state.password, verification);
                          }}/>
-
-          {Object.keys(this.state.errors).map(key => <p key={key}>{this.state.errors[key]}</p>)}
         </div>
+    );
+  }
+}
+
+class SignUpButton extends React.Component {
+  render() {
+    return (
+        <button className="btn btn-primary"
+                onClick={this.props.onClick}>Sign up!</button>
     );
   }
 }
@@ -103,31 +121,52 @@ class RegisterFormContainer extends React.Component {
   }
 }
 
-class SignUpButton extends React.Component {
-  render() {
-    return (
-        <button className="btn btn-primary">Sign up!</button>
-    );
-  }
-}
-
-// Higher-order component
 class RegisterForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.onSubmit = this.onSubmit.bind(this);
+
+    this.state = {
+      emailErrors: {},
+      passwordErrors: {},
+    }
+  }
+
+  hasErrors() {
+    const errors = {...this.state.emailErrors, ...this.state.passwordErrors};
+    return Object.keys(errors).length > 0;
+  }
+
+  onSubmit() {
+    if (this.hasErrors()) {
+      console.log({...this.state.emailErrors, ...this.state.passwordErrors});
+      console.log(this.state.errors);
+    }
+  }
+
   render() {
     return (
         <RegisterFormContainer>
-          <EmailInput/>
-          <ValidatedPasswordInput/>
-          <SignUpButton/>
+          <ValidatedEmailInput hasError={Object.keys(this.state.emailErrors).length > 0}
+                               onValidate={emailErrors => this.setState({emailErrors})}/>
+
+          {Object.keys(this.state.emailErrors).map(key => (
+              <p key={key}>{this.state.emailErrors[key]}</p>
+          ))}
+
+          <ValidatedPasswordInput hasError={Object.keys(this.state.passwordErrors).length > 0}
+                                  onValidate={passwordErrors => this.setState({passwordErrors})}/>
+
+          {Object.keys(this.state.passwordErrors).map(key => (
+              <p key={key}>{this.state.passwordErrors[key]}</p>
+          ))}
+
+          <SignUpButton onClick={this.onSubmit}/>
         </RegisterFormContainer>
     );
   }
 }
 
-const form = <RegisterForm />;
-
 ReactDOM.render((
-    <div>
-      {form}
-    </div>
+    <RegisterForm/>
 ), document.getElementById('container'));
