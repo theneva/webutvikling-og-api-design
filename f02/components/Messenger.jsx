@@ -3,7 +3,7 @@ class Messenger extends React.Component {
     super(props);
 
     this.state = {
-      activeThread: window.threads[0],
+      activeThread: props.threads[0],
     };
   }
 
@@ -15,7 +15,7 @@ class Messenger extends React.Component {
           <div style={{display: 'inline-block'}}>
             <ThreadSummaryList threads={this.props.threads}
                                onThreadSelected={index => this.setState({
-                    activeThread: window.threads[index],
+                    activeThread: this.props.threads[index],
                 })}/>
           </div>
 
