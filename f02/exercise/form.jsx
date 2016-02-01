@@ -55,7 +55,7 @@ class PasswordInput extends React.Component {
   }
 }
 
-class ValidatedPasswordInput extends React.Component {
+class VerifiedPasswordInput extends React.Component {
   constructor(props) {
     super(props);
 
@@ -121,6 +121,29 @@ class RegisterFormContainer extends React.Component {
   }
 }
 
+class ErrorList extends React.Component {
+  render() {
+    return (
+        <div>
+          {Object.keys(this.props.errors).map(key => (
+            <p key={key}>{this.props.errors[key]}</p>
+          ))}
+        </div>
+    );
+  }
+}
+
+function validate(validator, message) {
+  return Component => class extends React.Component {
+    render() {
+      const result = validator(this.props.value);
+      return <Component {...this.props} hasError={!!result}/>
+    }
+  }
+}
+
+// const ValidPassword = validate(v => v && v.length > 4, 'Password must be atleast 4 characters long')(PasswordInputField)
+
 class RegisterForm extends React.Component {
   constructor(props) {
     super(props);
@@ -150,16 +173,12 @@ class RegisterForm extends React.Component {
           <ValidatedEmailInput hasError={Object.keys(this.state.emailErrors).length > 0}
                                onValidate={emailErrors => this.setState({emailErrors})}/>
 
-          {Object.keys(this.state.emailErrors).map(key => (
-              <p key={key}>{this.state.emailErrors[key]}</p>
-          ))}
+          <ErrorList errors={this.state.emailErrors}/>
 
-          <ValidatedPasswordInput hasError={Object.keys(this.state.passwordErrors).length > 0}
+          <VerifiedPasswordInput hasError={Object.keys(this.state.passwordErrors).length > 0}
                                   onValidate={passwordErrors => this.setState({passwordErrors})}/>
 
-          {Object.keys(this.state.passwordErrors).map(key => (
-              <p key={key}>{this.state.passwordErrors[key]}</p>
-          ))}
+          <ErrorList errors={this.state.passwordErrors}/>
 
           <SignUpButton onClick={this.onSubmit}/>
         </RegisterFormContainer>
