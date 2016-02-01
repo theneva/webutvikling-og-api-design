@@ -1,0 +1,10 @@
+{
+  "name": "webpack-demo",
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  },
+  "devDependencies": {
+    "babel-loader": "^6.2.1",
+    "webpack": "^1.12.12"
+  }
+}

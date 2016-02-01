@@ -1,0 +1,6 @@
+{
+  "name": "f03-npm-scripts",
+  "scripts": {
+    "build": "babel src/Person.js src/index.js --presets es2015 > output/script.js"
+  }
+}
