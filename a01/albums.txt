@@ -1,0 +1,33 @@
+artist;title;year
+Anberlin;Dark Is The Way, Light Is A Place;2010
+Anberlin;Vital;2012
+Bad Religion;Christmas Songs;2013
+Band of Horses;Everything All The Time;2006
+Bring Me The Horizon;Sempiternal;2013
+Coldplay;A Rush Of Blood To The Head;2002
+Coldplay;Mylo Xyloto;2011
+Coldplay;Viva la Vida or Death and All His Friends;2008
+Coldplay;X&Y;2005
+Electric Light Orchestra;ELO's Greatest Hits;1979
+Green Day;Dookie;2008
+Imagine Dragons;Night Visions;2014
+John Lennon & Yoko Ono;Double Fantasy;1980
+Linkin Park;Hybrid Theory;2001
+Phil Collins;Face Value;1981
+Phil Collins;In The Air Tonight;1988
+Queen;A Night At The Opera;1975
+Shinedown;Threat To Survival;2015
+Simon and Garfunkel;Bridge Over Troubled Water;1970
+The Beatles;Let It Be;1970
+The Gaslight Anthem;American Slang;2010
+The Gaslight Anthem;Get Hurt;2014
+The Gaslight Anthem;Handwritten;2012
+The Gaslight Anthem;The '59 Sound;2008
+The Killers;Sam's Town;2006
+Tim Rice & Andrew Lloyd Webber;Jesus Christ Superstar highlights;1972
+Vampire Weekend;Modern Vampires of the City;2013
+Vampire Weekend;Vampire Weekend;2008
+Various Artists;Frozen: The Songs;2014
+Yellowcard;Lift A Sail;2014
+Yellowcard;Ocean Avenue;2003
+Yellowcard;Southern Air;2012
