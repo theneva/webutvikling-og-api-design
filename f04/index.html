@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<body>
+  <script>
+    fetch('http://localhost:1234/')
+      .then(response => response.json())
+      .then(greeting => document.write(greeting.message))
+      .catch(err => document.write(err));
+  </script>
+</body>
+</html>

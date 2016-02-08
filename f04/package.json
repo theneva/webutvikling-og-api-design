@@ -1,0 +1,13 @@
+{
+  "name": "f04",
+  "scripts": {
+    "start": "node --require babel-register app.js"
+  },
+  "dependencies": {
+    "babel": "^6.5.0",
+    "babel-preset-es2015": "^6.5.0",
+    "babel-register": "^6.5.0",
+    "body-parser": "^1.14.2",
+    "cors": "^2.7.1"
+  }
+}
