@@ -1,0 +1,7 @@
+{
+  "name": "mongo-demo",
+  "dependencies": {
+    "express": "^4.13.4",
+    "mongoose": "^4.4.6"
+  }
+}
