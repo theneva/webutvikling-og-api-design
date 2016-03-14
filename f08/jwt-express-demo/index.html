@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+
+<button onClick="getCountries()">Get countries</button>
+
+<script type="text/javascript">
+  const api = 'http://localhost:8732';
+
+  // get a token
+  fetch(api + '/authenticate', {
+    method: 'post',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      username: 'theneva',
+      password: 'some secret password'
+    })
+  })
+      .then(res => res.text())
+      .then(token => {
+        localStorage.token = token;
+      });
+
+
+  function getCountries() {
+    fetch(api + '/countries', {
+      headers: {
+        'X-Token': localStorage.token
+      }
+    })
+        .then(res => res.json())
+        .then(countries => console.log(...countries));
+  }
+</script>
+</body>
+</html>
